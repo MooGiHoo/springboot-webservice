@@ -1,0 +1,36 @@
+build.gradle에 대한 내용
+buildscript{
+    ext {
+        springBootVersion = '2.1.7.RELEASE'
+    }
+    repositories {
+        mavenCentral()
+        jcenter()
+    }
+    dependencies {
+        classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
+    }
+}
+플러그인 의존성과 관련된 코드
+ext는 build.gradle에서 사용하는 전역변수를 설정하겠다. 즉 springBoot 그레이들을 2.1.7 REALESE 의존성을 받겠다.
+
+apply plugins : 'java'
+apply plugins : 'eclips'
+apply plugins : 'org.springframework.boot'
+apply plugins : 'io.spring.dependency-management'
+자바와 스프링을 사용하기 위해서 항상 사용되는 플러그인 필수로 추가!
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.8.1'
+    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.8.1'
+}
+
+repositories는 각종 의존성 라이브러리들을 어떤 원격 저장소에서 받을 지 정하는 것.
+보통 mavenCentral을 사용하지만 라이브러리 업로드 난이도로 인해 jcenter도 사용하긴 함.
+jcenter는 라이브러리 업로드를 간단하게 할 수 있다. 또한, mavenCentarl까지 업도르 할 수 있도록 한다.
+
+dependencies는 프로젝트 개발에 필요한 의존성들을 선언하는 곳
